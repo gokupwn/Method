@@ -25,6 +25,8 @@ fi
 
 clear
 echo -e "$workFine Installing ..."
+python3 -m venv venv3
+source venv3/bin/activate
 python3 -m pip install http.client
 python3 -m pip install re
 python3 -m pip install threading
