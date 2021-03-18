@@ -78,7 +78,7 @@ function getInput (){
    echo -en "$workFine "
 }
 
-#------Lunch Scan----#
+#------Launch Scan----#
 function scan(){
   cmd="nmap"
   if [ "$services" = "yes" ]; then 
