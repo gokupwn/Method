@@ -29,13 +29,6 @@ python3 -m venv venv3
 source venv3/bin/activate
 python3 -m pip install http.client
 python3 -m pip install re
-python3 -m pip install threading
 python3 -m pip install argparse
-python3 -m pip install subprocess
-python3 -m pip install os
-python3 -m pip install socket
 python3 -m pip install readline
-python3 -m pip install glob
-python3 -m pip install sys
-
 echo -e "$workFine Done $workFine"
