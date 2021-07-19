@@ -6,6 +6,9 @@ import glob
 commands = [
     "help",
     "nslookup",
+    "simpleScraper",
+    "deepScraper",
+    "tracer",
     "allowedMethod",
     "mbuster",
     "banner",

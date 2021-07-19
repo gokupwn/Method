@@ -5,22 +5,27 @@ import http.client
 import subprocess
 import threading
 from autoComplete import commands, PathComplete, CommandComplete, HistoryClear
-from banner import banner
+from banner import *
+import scraper 
 from color import *
 from error import *
 from symbols import *
 from language import good_bye
 import modules
 
-
-# ----------workspace---------------#
-workspace = "default"
+# ----------switch banner ----------#
+BANNERNUMBER = 0
+# ----------WORKSPACE---------------#
+WORKSPACE = "default"
 # ----------module name-------------#
 module = ""
 # -------desciption of command------#
 descriptions = {
     "help": "Display This Message",
-    "nslookup": "Display IP address Of A Specific Domain",
+    "nslookup": "Display IP Address Of A Specific Domain",
+    "simpleScraper" : "Scrap Specific Social Media Account",
+    "deepScraper": "Deep Scraping Of LinkTree",
+    "tracer": "Trace Friends Relation",
     "allowedMethod":"Check Allowed Method",
     "mbuster": "Directory Brute Force",
     "banner": "Do You Want A Beautiful Banner ;)",
@@ -34,7 +39,7 @@ descriptions = {
 # ----------nslookup----------------#
 def nslookup(domain):
     infos = socket.getaddrinfo(domain, 0, 0, 0, 0)
-    return infos
+    return [ infos[0], infos[len(infos)- 1] ]
 
 
 # ------------format----------------#
@@ -48,7 +53,7 @@ def format(infos):
 # ----check command descriptions---#
 def Listcommands():
     for command in commands:
-        print(usage + "{}:{} ".format(light_yellow(command), descriptions[command]))
+        print('\t' + "{}: {} ".format(light_yellow(command), descriptions[command]))
 
 
 # -----allowed method--------------#
@@ -94,7 +99,7 @@ def allowed(url, Indicator):
             allowed = Response.getheader('allow')
         print(
                 workFine
-                + "The Following Method are allowed for"
+                + "The Following Method Are Allowed For"
                 + red(f" {url}" + ":")
                 + blue(f"{allowed}")
                 + workFine
@@ -107,14 +112,14 @@ def allowed(url, Indicator):
 
 # -----the interactive shell------#
 def interactive_shell():
-    global workspace
+    global WORKSPACE
     try:
         while True:
             CommandComplete()
 
             cmd = input(
                 light_red("[Method]")
-                + dark_gray("[{}{}]".format(workspace, module))
+                + dark_gray("[{}{}]".format(WORKSPACE, module))
                 + light_green("»")
                 + reset()
             )
@@ -131,6 +136,22 @@ def interactive_shell():
                         print(workFine + "-" * 25 + workFine)
                     else:
                         print(switcher(1))
+                
+                if cmd.split()[0] == "simpleScraper":
+                    if len(cmd.split() == 2):
+                    else:
+                
+                #---------deepScraper for linktree-----#
+                if cmd.split()[0] == "deepScraper":
+                    if len(cmd.split()) == 2:
+                        scrap = scraper.DeepScraper(cmd.split()[1])
+                        scrap.check_all()
+                        scrap.username_list()
+                        scrap.prettyPrint()
+                    else:
+                        print(switcher(5))
+                
+
 
                 #---------allowed Method----------#
                 if cmd.split()[0] == "allowedMethod":
@@ -141,14 +162,14 @@ def interactive_shell():
 
                 # --------help--------------#
                 if cmd.split()[0] == "help":
-                    print(usage + light_yellow("Commands: "))
+                    print(light_yellow("Commands: "))
                     Listcommands()
 
                 # -------workspace------------#
                 if cmd.split()[0] == "workspace":
                     if len(cmd.split()) == 2:
-                        workspace = cmd.split()[1]
-                        dirWorkspace = os.getcwd() + "/" + workspace
+                        WORKSPACE = cmd.split()[1]
+                        dirWorkspace = os.getcwd() + "/" + WORKSPACE
                         os.mkdir(dirWorkspace)
                         os.chdir(dirWorkspace)
                     else:
@@ -180,9 +201,23 @@ def interactive_shell():
 
                 # ---------banner-------------#
                 if cmd.split()[0] == "banner":
-                    banner()
+                    global BANNERNUMBER  
+                    if BANNERNUMBER < 3:
+                        if BANNERNUMBER == 1:
+                            banner()
+                        elif BANNERNUMBER == 2:
+                            banner1()
+                        else:
+                            banner2()
+                        BANNERNUMBER = (BANNERNUMBER+1) % 3
 
-            else:
+                if cmd.split()[0] not in commands:
+                    try:
+                        print(info + "OS Command: ")
+                        print(os.system('{}'.format(cmd.split()[0])))
+                    except:
+                        print(error + "Command Not Found" + error)
+            else: 
                 print(usage + "Please Use " + light_green("help ") + usage)
 
             CommandComplete()
