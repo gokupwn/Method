@@ -5,7 +5,7 @@ cd Method
 chmod +x install.sh
 ./install.sh
 # then 
-python3 method.py -io
+python3 method.py
 ```
 # Photo
 ![Demo Photo](/Method.jpg)
