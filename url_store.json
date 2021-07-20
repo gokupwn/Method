@@ -1,0 +1,19 @@
+[
+    {
+        "media" : "Facebook",
+        "url"   : "https://www.facebook.com/{}"
+    },
+
+    {
+        "media" : "Instagram",
+        "url" : "https://www.instagram.com/{}/"
+    },
+    {
+        "media" : "Twitter",
+        "url" : "https://twitter.com/{}"
+    },
+    {
+        "media" : "Github",
+        "url" : "https://github.com/{}"
+    }
+]

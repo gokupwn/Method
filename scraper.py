@@ -1,10 +1,8 @@
-import requests
+from requests import get
 import threading
 from symbols import error
 import re
-from  json import loads
 from color import *
-
 
 class DeepScraper ():
     def __init__(self, LINKTREEURL):
@@ -32,7 +30,7 @@ class DeepScraper ():
         self.usernameSnapchat  = []
 
         # HTML Content
-        self.response = requests.get(self.LINKTREEURL)
+        self.response = get(self.LINKTREEURL)
         
 
     def twitter_username(self):
@@ -92,13 +90,27 @@ class DeepScraper ():
         self.usernameLinkedin  = self.remove_duplicate(self.usernameLinkedin)
         self.usernameSnapchat  = self.remove_duplicate(self.usernameSnapchat)
 
-        print('\t' + light_blue('Twitter: ')  + '\n\n\t\t' + '\n'.join(self.usernameTwitter) + '\n')
-        print('\t' + blue('Facebook: ') + '\n\n\t\t' + '\n'.join(self.usernameFacebook ) + '\n')
-        print('\t' + red('Instagram: ')  + '\n\n\t\t' + '\n'.join(self.usernameInstagram ) + '\n')
-        print('\t' + light_gray('Github: ')  + '\n\n\t\t' + '\n'.join(self.usernameGithub ) + '\n')
-        print('\t' + light_blue('Telegram: ')  + '\n\n\t\t' + '\n'.join(self.usernameTelegram ) + '\n')
-        print('\t' + light_blue('LinkedIn: ')  + '\n\n\t\t' + '\n'.join(self.usernameLinkedin ) + '\n' )
-        print('\t' + light_yellow('SnapChat: ')  + '\n\n\t\t' + '\n'.join(self.usernameSnapchat) + '\n')
+        if self.usernameTwitter:
+            print('\t' + light_red("[") + light_gray(">") + light_blue("]: "), end='')
+            print(light_blue('Twitter: ')  + '\n\n\t\t' + '\n'.join(self.usernameTwitter) + '\n')
+        if self.usernameFacebook:
+            print('\t' + light_red("[") + light_gray(">") + light_blue("]: "), end='')
+            print(blue('Facebook: ') + '\n\n\t\t' + '\n'.join(self.usernameFacebook ) + '\n')
+        if self.usernameInstagram:
+            print('\t' + light_red("[") + light_gray(">") + light_blue("]: "), end='')
+            print(red('Instagram: ')  + '\n\n\t\t' + '\n'.join(self.usernameInstagram ) + '\n')
+        if self.usernameGithub:
+            print('\t' + light_red("[") + light_gray(">") + light_blue("]: "), end='')
+            print(light_gray('Github: ')  + '\n\n\t\t' + '\n'.join(self.usernameGithub ) + '\n')
+        if self.usernameTelegram:
+            print('\t' + light_red("[") + light_gray(">") + light_blue("]: "), end='')
+            print(light_blue('Telegram: ')  + '\n\n\t\t' + '\n'.join(self.usernameTelegram ) + '\n')
+        if self.usernameLinkedin:
+            print('\t' + light_red("[") + light_gray(">") + light_blue("]: "), end='')
+            print(light_blue('LinkedIn: ')  + '\n\n\t\t' + '\n'.join(self.usernameLinkedin ) + '\n' )
+        if self.usernameSnapchat:
+            print('\t' + light_red("[") + light_gray(">") + light_blue("]: "), end='')
+            print(light_yellow('SnapChat: ')  + '\n\n\t\t' + '\n'.join(self.usernameSnapchat) + '\n')
 
     def check_all(self):
         self.twitter_username()

@@ -14,38 +14,45 @@ errorList = {
     + "\n",
     2: "\t" + usage
     + white("usage: ")
-    + light_yellow("mbuster <url> <urlList> <port>")
+    + light_yellow("mbuster <url> <urlList> <port> ")
     + usage
     + "\n"
     + "\t" + info
     + white("Example: ")
-    + light_green("mbuster wwww.example.com  dir.txt  443")
+    + light_green("mbuster wwww.example.com  dir.txt  443 ")
     + info
     + "\n",
     3: "\t" + usage
     + white("usage: ")
-    + light_yellow("workspace <WorkspaceName>")
+    + light_yellow("workspace <WorkspaceName> ")
     + usage
     + "\n"
     + "\t" + info
     + white("Example: ")
-    + light_green("workspace testworkspace")
+    + light_green("workspace testworkspace ")
     + info
     + "\n",
     4: "\t" + usage
     + white("usage: ")
-    + light_yellow("allowedMethod <urlsList>")
+    + light_yellow("allowedMethod <urlsList> ")
     + usage
     + "\n"
     + "\t" + info
     + white("Example: ")
-    + light_green("allowedMethod urlList.txt")
+    + light_green("allowedMethod urlList.txt ")
     + info
     + "\n",
     5: "\t" + usage
     + white("usage: ")
-    + light_yellow("deepScraper <linkTreeUrl>")
+    + light_yellow("deepScraper <linkTreeUrl> ")
     + usage
+    + "\n",
+    6: "\t" + usage
+    + white("usage: ")
+    + light_yellow("checkUsername <username> ")
+    + usage
+    + "\n"
+    
 }
 
 

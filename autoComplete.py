@@ -7,6 +7,7 @@ commands = [
     "help",
     "nslookup",
     "simpleScraper",
+    "checkUsername",
     "deepScraper",
     "tracer",
     "allowedMethod",

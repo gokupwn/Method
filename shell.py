@@ -4,6 +4,7 @@ import re
 import http.client
 import subprocess
 import threading
+from usernameChecker import UsernameChecker
 from autoComplete import commands, PathComplete, CommandComplete, HistoryClear
 from banner import *
 import scraper 
@@ -23,10 +24,11 @@ module = ""
 descriptions = {
     "help": "Display This Message",
     "nslookup": "Display IP Address Of A Specific Domain",
-    "simpleScraper" : "Scrap Specific Social Media Account",
+    "simpleScraper": "Scrap Specific Social Media Account",
+    "checkUsername": "Check Username Accross Multiple Social Media",
     "deepScraper": "Deep Scraping Of LinkTree",
-    "tracer": "Trace Friends Relation",
-    "allowedMethod":"Check Allowed Method",
+    "tracer": "Trace Friends Relations",
+    "allowedMethod": "Check Allowed Method",
     "mbuster": "Directory Brute Force",
     "banner": "Do You Want A Beautiful Banner ;)",
     "workspace": "Create And Load A New Workspace To Be Organised",
@@ -137,10 +139,18 @@ def interactive_shell():
                     else:
                         print(switcher(1))
                 
-                if cmd.split()[0] == "simpleScraper":
-                    if len(cmd.split() == 2):
-                    else:
+                # if cmd.split()[0] == "simpleScraper":
+                #     if len(cmd.split() == 2):
+                #     else:
                 
+                #-------------check username--------#
+                if cmd.split()[0] == "checkUsername":
+                    if len(cmd.split()) == 2:
+                        USER = UsernameChecker(cmd.split()[1])
+                        USER.check_username()
+                    else:
+                        print(switcher(6))
+
                 #---------deepScraper for linktree-----#
                 if cmd.split()[0] == "deepScraper":
                     if len(cmd.split()) == 2:
